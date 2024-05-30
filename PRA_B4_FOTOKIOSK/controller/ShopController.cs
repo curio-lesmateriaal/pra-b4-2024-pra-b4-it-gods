@@ -29,7 +29,7 @@ namespace PRA_B4_FOTOKIOSK.controller
                 Price = 5.00m,
                 Description = "20x30 photo print\n"
             });
-
+        
             // Set the initial shop price list
             ShopManager.SetShopPriceList("Prijzen:\n€2,55\n€5,00\n\n");
 
@@ -41,14 +41,15 @@ namespace PRA_B4_FOTOKIOSK.controller
             }
 
             // For demonstration purposes, display the price list
-            var priceList = ShopManager.GetShopPriceList();
-            foreach (var entry in priceList)
-            {
-                Console.WriteLine(entry);
-            }
+
+            //var priceList = ShopManager.GetShopPriceList();
+            //foreach (var entry in priceList)
+            //{
+            //    Console.WriteLine(entry);
+            //}
 
             // Set the receipt text (assuming this is part of the UI update)
-            ShopManager.SetShopReceipt("Eindbedrag\n€");
+            ShopManager.SetShopReceipt("Bonnetje\n");
 
             // Update the dropdown with products
             ShopManager.UpdateDropDownProducts();
@@ -61,12 +62,17 @@ namespace PRA_B4_FOTOKIOSK.controller
             var photoID = ShopManager.GetFotoId();
             var amount = ShopManager.GetAmount();
 
-            Console.WriteLine($"Selected Product: {selectedProduct}");
-            Console.WriteLine($"Photo ID: {photoID}");
-            Console.WriteLine($"Total Amount: {amount}");
+            ShopManager.AddShopReceipt($"Foto-ID: {photoID}\n");
+            ShopManager.AddShopReceipt($"Product: {selectedProduct.Name}\n");
+            ShopManager.AddShopReceipt($"Aantal: {amount}\n");
+
+            // Bereken het totaalbedrag
+            decimal totalPrice = selectedProduct.Price * amount.Value;
+
+            // Voeg het totaalbedrag toe aan de bon
+            ShopManager.AddShopReceipt($"Totaal: €{totalPrice}\n");
 
             
-
 
         }
 
