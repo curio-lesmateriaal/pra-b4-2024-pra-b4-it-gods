@@ -3,8 +3,10 @@ using PRA_B4_FOTOKIOSK.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation.Peers;
 
 namespace PRA_B4_FOTOKIOSK.controller
 {
@@ -17,19 +19,19 @@ namespace PRA_B4_FOTOKIOSK.controller
             // Initialize the product list with example products
             ShopManager.Products.Add(new KioskProduct()
             {
-                Name = "Foto 10x15",
+                Name = "Regular Photo\n",
                 Price = 2.55m,
-                Description = "Standard 10x15 photo print"
+                Description = "10x15 photo print\n"
             });
             ShopManager.Products.Add(new KioskProduct()
             {
-                Name = "Foto 20x30",
+                Name = "\nLarge Photo\n",
                 Price = 5.00m,
-                Description = "Large 20x30 photo print"
+                Description = "20x30 photo print\n"
             });
 
             // Set the initial shop price list
-            ShopManager.SetShopPriceList("Prijzen:\n€2,50\n€5,00");
+            ShopManager.SetShopPriceList("Prijzen:\n€2,55\n€5,00\n\n");
 
             // Loop through the products and add them to the price list
             foreach (KioskProduct product in ShopManager.Products)
@@ -55,7 +57,17 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Toevoegen knop is geklikt
         public void AddButtonClick()
         {
-            // Implementation for adding a product (if needed)
+            var selectedProduct = ShopManager.GetSelectedProduct();
+            var photoID = ShopManager.GetFotoId();
+            var amount = ShopManager.GetAmount();
+
+            Console.WriteLine($"Selected Product: {selectedProduct}");
+            Console.WriteLine($"Photo ID: {photoID}");
+            Console.WriteLine($"Total Amount: {amount}");
+
+            
+
+
         }
 
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
