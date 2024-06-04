@@ -49,7 +49,7 @@ namespace PRA_B4_FOTOKIOSK.controller
             //}
 
             // Set the receipt text (assuming this is part of the UI update)
-            ShopManager.SetShopReceipt("Bonnetje\n");
+            ShopManager.SetShopReceipt("Bonnetje:\n");
 
             // Update the dropdown with products
             ShopManager.UpdateDropDownProducts();
