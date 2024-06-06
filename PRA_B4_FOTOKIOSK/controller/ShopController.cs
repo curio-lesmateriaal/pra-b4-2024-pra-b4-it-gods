@@ -2,17 +2,21 @@
 using PRA_B4_FOTOKIOSK.models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Automation.Peers;
 
 namespace PRA_B4_FOTOKIOSK.controller
 {
+
     public class ShopController
     {
         public static Home Window { get; set; }
+
 
         public void Start()
         {
@@ -69,6 +73,9 @@ namespace PRA_B4_FOTOKIOSK.controller
             // Bereken het totaalbedrag
             decimal totalPrice = selectedProduct.Price * amount.Value;
 
+
+            
+
             // Voeg het totaalbedrag toe aan de bon
             ShopManager.AddShopReceipt($"Totaal: €{totalPrice}\n");
 
@@ -85,7 +92,15 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
         public void SaveButtonClick()
         {
-            // Implementation for saving changes (if needed)
+            
+            string ShopReceipt = ShopManager.GetShopReceipt();
+            Console.WriteLine( ShopReceipt );
+            string path = "../text.txt";
+            Console.WriteLine($"Bon opgeslagen naar {ShopReceipt}");
+            File.WriteAllText(path, ShopReceipt);
+
+
+
         }
     }
 }

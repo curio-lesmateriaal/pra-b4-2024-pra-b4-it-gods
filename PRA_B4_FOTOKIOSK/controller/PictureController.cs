@@ -11,9 +11,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace PRA_B4_FOTOKIOSK.controller
 {
+   
     public class PictureController
     {
         // De window die we laten zien op het scherm
