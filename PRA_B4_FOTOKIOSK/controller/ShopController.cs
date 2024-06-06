@@ -98,16 +98,13 @@ namespace PRA_B4_FOTOKIOSK.controller
             string ShopReceipt = ShopManager.GetShopReceipt();
 
             // Controleer of de geselecteerde product niet null is
-            if (selectedProduct != null)
-            {
-
-
+            
                 string path = @"../../../text.txt";
 
                 string data = countNumberOne.ToString();
 
                 File.WriteAllText(path, $"ShopReceipt: {ShopReceipt}\n");
-            }
+            
 
         }
     }
