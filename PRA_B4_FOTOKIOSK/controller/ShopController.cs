@@ -2,6 +2,7 @@
 using PRA_B4_FOTOKIOSK.models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
+using System.Windows.Shapes;
 
 namespace PRA_B4_FOTOKIOSK.controller
 {
@@ -16,6 +18,7 @@ namespace PRA_B4_FOTOKIOSK.controller
     public class ShopController
     {
         public static Home Window { get; set; }
+        decimal countNumberOne;
 
 
         public void Start()
@@ -33,7 +36,7 @@ namespace PRA_B4_FOTOKIOSK.controller
                 Price = 5.00m,
                 Description = "20x30 photo print\n"
             });
-        
+
             // Set the initial shop price list
             ShopManager.SetShopPriceList("Prijzen:\n€2,55\n€5,00\n\n");
 
@@ -74,23 +77,18 @@ namespace PRA_B4_FOTOKIOSK.controller
             decimal totalPrice = selectedProduct.Price * amount.Value;
 
 
-            
+
 
             // Voeg het totaalbedrag toe aan de bon
             ShopManager.AddShopReceipt($"Totaal: €{totalPrice}\n");
 
-            
-
+            // zorg dat de total prijs naar een andere variabele gaat
+            countNumberOne += totalPrice;
         }
 
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
         public void ResetButtonClick()
         {
-            string ShopReceipt = ShopManager.GetShopReceipt();
-            string path = "../textbestand/text.txt";
-            Console.WriteLine($"Bon opgeslagen naar {ShopReceipt}");
-            File.WriteAllText(path, ShopReceipt);
-            // Implementation for resetting the product list (if needed)
         }
 
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
@@ -98,11 +96,18 @@ namespace PRA_B4_FOTOKIOSK.controller
         {
             
             string ShopReceipt = ShopManager.GetShopReceipt();
-            string path = "../textbestand/text.txt";
-            Console.WriteLine($"Bon opgeslagen naar {ShopReceipt}");
-            File.WriteAllText(path, ShopReceipt);
+
+            // Controleer of de geselecteerde product niet null is
+            if (selectedProduct != null)
+            {
 
 
+                string path = @"../../../text.txt";
+
+                string data = countNumberOne.ToString();
+
+                File.WriteAllText(path, $"ShopReceipt: {ShopReceipt}\n");
+            }
 
         }
     }

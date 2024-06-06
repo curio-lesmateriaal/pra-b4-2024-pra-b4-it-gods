@@ -1,0 +1,12 @@
+ShopReceipt: Bonnetje:
+Foto-ID: 4
+Product: Regular Photo
+
+Aantal: 4
+Totaal: €10,20
+Foto-ID: 4
+Product: Regular Photo
+
+Aantal: 4
+Totaal: €10,20
+
