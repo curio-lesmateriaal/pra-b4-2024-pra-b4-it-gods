@@ -86,6 +86,10 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
         public void ResetButtonClick()
         {
+            string ShopReceipt = ShopManager.GetShopReceipt();
+            string path = "../textbestand/text.txt";
+            Console.WriteLine($"Bon opgeslagen naar {ShopReceipt}");
+            File.WriteAllText(path, ShopReceipt);
             // Implementation for resetting the product list (if needed)
         }
 
@@ -94,8 +98,7 @@ namespace PRA_B4_FOTOKIOSK.controller
         {
             
             string ShopReceipt = ShopManager.GetShopReceipt();
-            Console.WriteLine( ShopReceipt );
-            string path = "../text.txt";
+            string path = "../textbestand/text.txt";
             Console.WriteLine($"Bon opgeslagen naar {ShopReceipt}");
             File.WriteAllText(path, ShopReceipt);
 
