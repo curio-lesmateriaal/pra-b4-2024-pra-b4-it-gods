@@ -13,6 +13,7 @@ namespace PRA_B4_FOTOKIOSK.magie
 {
     public class ShopManager
     {
+
         public static List<KioskProduct> Products = new List<KioskProduct>();
         public static Home Instance { get; set; }
 
@@ -25,7 +26,6 @@ namespace PRA_B4_FOTOKIOSK.magie
         {
             Instance.lbPrices.Content = Instance.lbPrices.Content + text;
         }
-
         public static string GetShopPriceList()
         {
             return (string)Instance.lbReceipt.Content;
@@ -43,14 +43,7 @@ namespace PRA_B4_FOTOKIOSK.magie
 
         public static void AddShopReceipt(string text)
         {
-            // Voeg tekst toe aan de lbReceipt Content
             SetShopReceipt(GetShopReceipt() + text);
-
-            // Voeg tekst toe aan de receiptBuilder voor bestandsschrijven
-            if (Instance.manager != null)
-            {
-                Instance.manager.AppendToReceiptBuilder(text);
-            }
         }
 
         public static void UpdateDropDownProducts()
@@ -95,18 +88,6 @@ namespace PRA_B4_FOTOKIOSK.magie
             return id;
         }
 
-        // Voeg een instantie variabele van ShopManager toe aan de Home klasse
-        private StringBuilder receiptBuilder = new StringBuilder();
 
-        public void AppendToReceiptBuilder(string text)
-        {
-            receiptBuilder.Append(text);
-        }
-
-        public void SaveReceiptToFile(string filePath)
-        {
-            string receiptText = receiptBuilder.ToString();
-            File.WriteAllText(filePath, receiptText);
-        }
     }
 }
